@@ -1,0 +1,23 @@
+$(document).ready(function(){
+      $("#but").click(function(){
+        var bla = $('#episode').val();
+        var query = "https://swapi.co/api/films/"+bla+'/';
+
+        
+          var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+         // document.getElementById("output").innerHTML = 'waiting';
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var res = JSON.parse(xmlhttp.responseText);
+            console.log(res);
+            document.getElementById("textCrawl").innerHTML=res['opening_crawl'];
+            document.getElementById("title").innerHTML=res['title'];
+          }
+        }
+        xmlhttp.open("GET", query, true);
+        xmlhttp.send();
+      });
+    });
+    function processResults(){
+      console.log(this);
+    }
